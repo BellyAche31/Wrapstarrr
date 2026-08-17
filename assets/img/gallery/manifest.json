@@ -1,38 +1,12 @@
 {
   "photos": [
-    {
-      "file": "Screenshot 2026-08-16 231746.png",
-      "alt": "Honda Click wrapped in pearl white with blue accents and blue rims, lit up at night"
-    },
-    {
-      "file": "Screenshot 2026-08-16 231658.png",
-      "alt": "Honda Click wrapped in candy red with matching red rims"
-    },
-    {
-      "file": "Screenshot 2026-08-16 231552.png",
-      "alt": "Honda Click wrapped in pink with cherry blossom decals and a violet seat"
-    },
-    {
-      "file": "Screenshot 2026-08-16 231415.png",
-      "alt": "Honda Click wrapped in gloss blue with a rainbow exhaust",
-      "wide": true
-    },
-    {
-      "file": "asd.jpg",
-      "alt": "Pink and red two-tone wrap on a Honda S2000 with carbon side skirt and custom stripe decal",
-      "wide": true
-    },
-    {
-      "file": "578013699_122129557394986172_4766761545472058886_n.jpg",
-      "alt": "Honda Click 125i wrapped in gloss red with black panels"
-    },
-    {
-      "file": "572908430_122128157210986172_2385351814553329139_n.jpg",
-      "alt": "Honda Click wrapped in metallic orange with blue rim accents"
-    },
-    {
-      "file": "578010810_122129097290986172_5019196189956383661_n.jpg",
-      "alt": "Honda Click wrapped in pearl white, shot at night"
-    }
+    { "file": "click-white-blue-night.png", "alt": "Honda Click wrapped in pearl white with blue accents and blue rims, lit up at night" },
+    { "file": "click-candy-red.png", "alt": "Honda Click wrapped in candy red with matching red rims" },
+    { "file": "click-pink-sakura.png", "alt": "Honda Click wrapped in pink with cherry blossom decals and a violet seat" },
+    { "file": "click-gloss-blue.png", "alt": "Honda Click wrapped in gloss blue with a rainbow exhaust", "wide": true },
+    { "file": "s2000-pink-red.jpg", "alt": "Pink and red two-tone wrap on a Honda S2000 with carbon side skirt and custom stripe decal", "wide": true },
+    { "file": "click-125i-red.jpg", "alt": "Honda Click 125i wrapped in gloss red with black panels" },
+    { "file": "click-orange.jpg", "alt": "Honda Click wrapped in metallic orange with blue rim accents" },
+    { "file": "click-pearl-white.jpg", "alt": "Honda Click wrapped in pearl white, shot at night" }
   ]
 }
