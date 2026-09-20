@@ -164,4 +164,56 @@
   fromManifest().then(function (photos) {
     return photos.length ? photos : fromNumbers();
   }).then(render);
+
+  /* ------------------------------------------------------------------
+     Color catalogue — photos of the films actually in stock, listed in
+     assets/img/colors/manifest.json as { file, names: [...] }.
+     ------------------------------------------------------------------ */
+  var colorGrid = document.getElementById('colorGrid');
+  if (!colorGrid) return;
+
+  var COLOR_DIR = 'assets/img/colors/';
+
+  fetch(COLOR_DIR + 'manifest.json', { cache: 'no-cache' })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !Array.isArray(data.colors)) return;
+
+      data.colors.forEach(function (entry) {
+        if (!entry || !entry.file) return;
+        var names = Array.isArray(entry.names) ? entry.names : [];
+        var src = encodeURI(COLOR_DIR + entry.file);
+        var label = names.join(', ');
+
+        var fig = document.createElement('figure');
+        fig.className = 'swatch-card';
+
+        var frame = document.createElement('div');
+        frame.className = 'swatch-card__img';
+        var img = document.createElement('img');
+        img.src = src;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = label ? 'Wrap film swatches: ' + label : 'Wrap film swatch';
+        frame.appendChild(img);
+
+        var cap = document.createElement('figcaption');
+        names.forEach(function (n) {
+          var tag = document.createElement('span');
+          tag.textContent = n;
+          cap.appendChild(tag);
+        });
+
+        fig.appendChild(frame);
+        fig.appendChild(cap);
+        fig.tabIndex = 0;
+        fig.addEventListener('click', function () { openLightbox(src, img.alt); });
+        fig.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(src, img.alt); }
+        });
+
+        colorGrid.appendChild(fig);
+      });
+    })
+    .catch(function () { /* catalogue is optional */ });
 })();
