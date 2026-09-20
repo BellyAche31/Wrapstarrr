@@ -51,6 +51,23 @@
 
      If neither turns up anything, styled placeholders are shown.
      ------------------------------------------------------------------ */
+  /* Photo lists are inlined in the page (see the JSON script tags), so the
+     site works from a plain file:// copy or a cached page with no network
+     request. The manifest files are still read as a fallback. */
+  function inlineData(id) {
+    var el = document.getElementById(id);
+    if (!el) return null;
+    try { return JSON.parse(el.textContent); } catch (e) { return null; }
+  }
+
+  function loadData(id, url) {
+    var inline = inlineData(id);
+    if (inline) return Promise.resolve(inline);
+    return fetch(url, { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
+  }
+
   var grid = document.getElementById('gallery');
   if (!grid) return;
 
@@ -75,8 +92,7 @@
   }
 
   function fromManifest() {
-    return fetch(DIR + 'manifest.json', { cache: 'no-cache' })
-      .then(function (r) { return r.ok ? r.json() : null; })
+    return loadData('galleryData', DIR + 'manifest.json')
       .then(function (data) {
         if (!data || !Array.isArray(data.photos)) return [];
         return data.photos.filter(function (p) { return p && p.file; }).map(function (p) {
@@ -174,8 +190,7 @@
 
   var COLOR_DIR = 'assets/img/colors/';
 
-  fetch(COLOR_DIR + 'manifest.json', { cache: 'no-cache' })
-    .then(function (r) { return r.ok ? r.json() : null; })
+  loadData('colorData', COLOR_DIR + 'manifest.json')
     .then(function (data) {
       if (!data || !Array.isArray(data.colors)) return;
 
